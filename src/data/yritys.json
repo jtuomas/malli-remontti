@@ -1,0 +1,24 @@
+{
+  "nimi": "Malli-Remontti Oy",
+  "slogan": "Laadukas remontti – ajallaan ja sovitulla hinnalla",
+  "puhelin": "040 123 4567",
+  "sahkoposti": "info@malli-remontti.fi",
+  "paikkakunta": "Oulu",
+  "heroKuva": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80",
+  "vartit": [
+    { "luku": "10+", "teksti": "Vuotta kokemusta" },
+    { "luku": "200+", "teksti": "Tyytyväistä asiakasta" },
+    { "luku": "100%", "teksti": "Kiinteä hinta" }
+  ],
+  "palvelut": [
+    { "ikoni": "🔨", "nimi": "Pintaremontit", "kuvaus": "Maalaus, tapetointi ja lattiat" },
+    { "ikoni": "🚿", "nimi": "Kylpyhuoneremontit", "kuvaus": "Vesieristys, kaakelointi, kalusteet" },
+    { "ikoni": "🪟", "nimi": "Ikkunat ja ovet", "kuvaus": "Vaihto, tiivistys ja maalaus" },
+    { "ikoni": "🏠", "nimi": "Pihatyöt", "kuvaus": "Terassit, aidat ja kulkuväylät" }
+  ],
+  "edut": [
+    { "ikoni": "✅", "otsikko": "Kiinteä hinta", "teksti": "Ei ikäviä yllätyksiä – sovittu hinta pitää aina" },
+    { "ikoni": "📅", "otsikko": "Aikataulu pitää", "teksti": "Töihin tullaan sovitusti ja valmistutaan ajoissa" },
+    { "ikoni": "⭐", "otsikko": "10+ vuotta kokemusta", "teksti": "Satoja tyytyväisiä asiakkaita paikkakunnalla" }
+  ]
+}

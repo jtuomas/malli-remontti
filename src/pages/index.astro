@@ -1,17 +1,271 @@
 ---
+import '../styles/global.css';
+import data from '../data/yritys.json';
 
+const puhelinHref = "tel:" + data.puhelin;
+const sahkopostiHref = "mailto:" + data.sahkoposti;
 ---
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{data.nimi}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      html { scroll-behavior: smooth; }
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up   { animation: fadeUp 0.7s ease both; }
+      .fade-up-2 { animation: fadeUp 0.7s ease 0.15s both; }
+      .fade-up-3 { animation: fadeUp 0.7s ease 0.3s both; }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+
+      #mobile-menu { display: none; }
+      #mobile-menu.open { display: flex; }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900">
+
+    <!-- NAVIGAATIO -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 px-6 py-4">
+      <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <span class="font-black text-orange-600 text-lg">{data.nimi}</span>
+        <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-600">
+          <a href="#palvelut" class="hover:text-orange-600 transition">Palvelut</a>
+          <a href="#miksi-me" class="hover:text-orange-600 transition">Miksi me</a>
+          <a href="#arvostelut" class="hover:text-orange-600 transition">Arvostelut</a>
+          <a href="#yhteystiedot" class="hover:text-orange-600 transition">Yhteystiedot</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href={puhelinHref} class="bg-orange-600 text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-orange-700 transition">
+            Soita nyt
+          </a>
+          <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Valikko">
+            <span class="block w-6 h-0.5 bg-gray-700 transition-all" id="line1"></span>
+            <span class="block w-6 h-0.5 bg-gray-700 transition-all" id="line2"></span>
+            <span class="block w-6 h-0.5 bg-gray-700 transition-all" id="line3"></span>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="flex-col gap-4 px-6 pt-4 pb-6 md:hidden border-t border-gray-100 mt-4">
+        <a href="#palvelut" class="mobile-link block text-lg font-semibold text-gray-700 hover:text-orange-600 transition">Palvelut</a>
+        <a href="#miksi-me" class="mobile-link block text-lg font-semibold text-gray-700 hover:text-orange-600 transition">Miksi me</a>
+        <a href="#arvostelut" class="mobile-link block text-lg font-semibold text-gray-700 hover:text-orange-600 transition">Arvostelut</a>
+        <a href="#yhteystiedot" class="mobile-link block text-lg font-semibold text-gray-700 hover:text-orange-600 transition">Yhteystiedot</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative min-h-screen flex items-center justify-center text-white text-center px-6">
+      <div class="absolute inset-0 z-0">
+        <img src={data.heroKuva} alt="Remonttityö" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black/55"></div>
+      </div>
+      <div class="relative z-10 max-w-3xl">
+        <p class="fade-up text-orange-400 font-semibold text-sm uppercase tracking-widest mb-4">{data.paikkakunta}</p>
+        <h1 class="fade-up-2 text-5xl md:text-7xl font-black mb-6 leading-tight">{data.nimi}</h1>
+        <p class="fade-up-3 text-xl md:text-2xl mb-10 text-gray-200">{data.slogan}</p>
+        <div class="fade-up-3 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={puhelinHref} class="bg-orange-600 hover:bg-orange-500 text-white font-bold text-lg px-10 py-4 rounded-full transition">
+            📞 Soita: {data.puhelin}
+          </a>
+          <a href="#yhteystiedot" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-lg px-10 py-4 rounded-full border border-white/30 transition">
+            Pyydä tarjous
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TILASTOT -->
+    <section class="bg-orange-600 text-white px-6 py-12">
+      <div class="max-w-3xl mx-auto grid grid-cols-3 gap-6 text-center">
+        {data.vartit.map((v) => (
+          <div class="reveal">
+            <div class="text-4xl md:text-5xl font-black mb-1">{v.luku}</div>
+            <div class="text-orange-200 text-sm font-medium">{v.teksti}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- PALVELUT -->
+    <section id="palvelut" class="px-4 py-24 max-w-5xl mx-auto">
+      <p class="reveal text-orange-600 font-semibold text-sm uppercase tracking-widest text-center mb-3">Mitä teemme</p>
+      <h2 class="reveal text-4xl font-black text-center mb-16">Palvelumme</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        {data.palvelut.map((p, i) => (
+          <div class={"reveal reveal-delay-" + (i + 1) + " group flex items-center gap-4 md:flex-col md:text-center p-6 bg-gray-50 rounded-2xl hover:bg-orange-600 hover:text-white hover:shadow-xl transition-all duration-300 cursor-default"}>
+            <div class="text-4xl shrink-0">{p.ikoni}</div>
+            <div>
+              <h3 class="font-bold text-base mb-1">{p.nimi}</h3>
+              <p class="text-sm text-gray-500 group-hover:text-orange-100 leading-relaxed transition-colors">{p.kuvaus}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- MIKSI ME -->
+    <section id="miksi-me" class="bg-gray-950 text-white px-6 py-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="reveal text-orange-400 font-semibold text-sm uppercase tracking-widest mb-3">Luotettava kumppani</p>
+        <h2 class="reveal text-4xl font-black mb-16">Miksi valita meidät?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {data.edut.map((e, i) => (
+            <div class={"reveal reveal-delay-" + (i + 1) + " bg-white/5 hover:bg-white/10 rounded-3xl p-8 transition-colors duration-300"}>
+              <div class="text-5xl mb-4">{e.ikoni}</div>
+              <h3 class="font-bold text-xl mb-3">{e.otsikko}</h3>
+              <p class="text-gray-400 leading-relaxed">{e.teksti}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ASIAKASARVOSTELUT -->
+    <section id="arvostelut" class="px-6 py-24 bg-gray-50">
+      <div class="max-w-4xl mx-auto">
+        <p class="reveal text-orange-600 font-semibold text-sm uppercase tracking-widest text-center mb-3">Mitä asiakkaat sanovat</p>
+        <h2 class="reveal text-4xl font-black text-center mb-16">Asiakasarvostelut</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="reveal reveal-delay-1 bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex gap-1 mb-4">
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+            </div>
+            <p class="text-gray-600 leading-relaxed mb-6 italic">"Erinomainen työn jälki ja aikataulu piti täydellisesti. Suosittelen lämpimästi!"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">M</div>
+              <div>
+                <div class="font-bold text-sm">Matti K.</div>
+                <div class="text-gray-400 text-xs">{data.paikkakunta}</div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal reveal-delay-2 bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex gap-1 mb-4">
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+            </div>
+            <p class="text-gray-600 leading-relaxed mb-6 italic">"Kylpyhuoneremontti sujui ongelmitta. Hinta oli juuri se mitä sovittiin – ei yllätyksiä."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">S</div>
+              <div>
+                <div class="font-bold text-sm">Sari L.</div>
+                <div class="text-gray-400 text-xs">{data.paikkakunta}</div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal reveal-delay-3 bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex gap-1 mb-4">
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+              <span class="text-orange-400 text-xl">★</span>
+            </div>
+            <p class="text-gray-600 leading-relaxed mb-6 italic">"Ammattitaitoista porukkaa. Siivosivat jälkensä ja olivat ystävällisiä koko projektin ajan."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">J</div>
+              <div>
+                <div class="font-bold text-sm">Jukka P.</div>
+                <div class="text-gray-400 text-xs">{data.paikkakunta}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YHTEYSTIEDOT -->
+    <section id="yhteystiedot" class="px-6 py-24 text-center max-w-2xl mx-auto">
+      <p class="reveal text-orange-600 font-semibold text-sm uppercase tracking-widest mb-3">Ota yhteyttä</p>
+      <h2 class="reveal text-4xl font-black mb-4">Pyydä maksuton tarjous</h2>
+      <p class="reveal text-gray-500 mb-12 text-lg">Vastaame saman päivän aikana. Ei sitoumuksia.</p>
+      <div class="reveal flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={puhelinHref} class="bg-orange-600 text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-orange-700 transition">
+          📞 {data.puhelin}
+        </a>
+        <a href={sahkopostiHref} class="border-2 border-orange-600 text-orange-600 font-bold text-lg px-10 py-4 rounded-full hover:bg-orange-50 transition">
+          ✉️ {data.sahkoposti}
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 text-gray-500 text-center py-8 text-sm">
+      © 2025 {data.nimi} · {data.paikkakunta} · Kaikki oikeudet pidätetään
+    </footer>
+
+    <!-- KELLUVA SOITTONAPPI -->
+    <a href={puhelinHref} class="fixed bottom-6 right-6 z-50 md:hidden bg-orange-600 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-orange-700 transition" aria-label="Soita">
+      📞
+    </a>
+
+    <script>
+      const btn = document.getElementById('menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const line1 = document.getElementById('line1');
+      const line2 = document.getElementById('line2');
+      const line3 = document.getElementById('line3');
+
+      btn?.addEventListener('click', () => {
+        menu?.classList.toggle('open');
+        if (menu?.classList.contains('open')) {
+          line1.style.transform = 'translateY(8px) rotate(45deg)';
+          line2.style.opacity = '0';
+          line3.style.transform = 'translateY(-8px) rotate(-45deg)';
+        } else {
+          line1.style.transform = '';
+          line2.style.opacity = '';
+          line3.style.transform = '';
+        }
+      });
+
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menu?.classList.remove('open');
+          line1.style.transform = '';
+          line2.style.opacity = '';
+          line3.style.transform = '';
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+  </body>
 </html>
