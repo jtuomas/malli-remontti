@@ -11,10 +11,14 @@
     { "luku": "Ma-Pe", "teksti": "Klo 08-16" }
   ],
   "palvelut": [
-    { "ikoni": "car_repair", "nimi": "Huollot ja korjaukset", "kuvaus": "Peruskorjaukset ja huollot nopeasti hintaan 72€/h." },
-    { "ikoni": "troubleshoot", "nimi": "Sähkötyöt & Diagnostiikka", "kuvaus": "Sähkötyöt ja vianetsintä modernilla laitteistolla." },
-    { "ikoni": "water_drop", "nimi": "Öljynvaihdot", "kuvaus": "Henkilöautojen öljynvaihdot alkaen 30€ + tarvikkeet." },
-    { "ikoni": "welding_tool", "nimi": "Hitsaus- ja maalaustyöt", "kuvaus": "Ammattitaitoiset hitsaus- ja maalaustyöt hintaan 92€/h." }
+    { "ikoni": "car_repair", "nimi": "Määräaikaishuollot", "kuvaus": "Kattavat huollot ja peruskorjaukset auton valmistajan ohjeiden mukaisesti." },
+    { "ikoni": "troubleshoot", "nimi": "Vikakoodit & Sähkö", "kuvaus": "Tarkka vianetsintä modernilla diagnostiikalla sekä vaativat sähkötyöt." },
+    { "ikoni": "settings", "nimi": "Jarrut ja alusta", "kuvaus": "Jarrupalojen, iskunvaimentimien, jousituksen ja nivelten vaihdot." },
+    { "ikoni": "engineering", "nimi": "Moottori & Voimansiirto", "kuvaus": "Jakopään remontit, kytkimet, vaihteistot ja pakoputkistojen korjaukset." },
+    { "ikoni": "oil_barrel", "nimi": "Öljynvaihdot", "kuvaus": "Nopeat ja luotettavat öljyn ja suodattimien vaihdot odottaessa." },
+    { "ikoni": "tire_repair", "nimi": "Rengastyöt", "kuvaus": "Renkaiden vaihdot, tasapainotukset ja muut rengastyöt ammattitaidolla." },
+    { "ikoni": "welding_tool", "nimi": "Hitsaustyöt & Maalaus", "kuvaus": "Ammattitaitoiset ruostevaurioiden korjaukset, hitsaukset ja maalaustyöt." },
+    { "ikoni": "electric_car", "nimi": "Lisälaiteasennukset", "kuvaus": "Moottorilämmittimet, sisähaarat, opetuspolkimet ja muut lisälaitteet." }
   ],
   "edut": [
     { "ikoni": "verified", "otsikko": "Paikallinen asiantuntija", "teksti": "Toimimme Oulun Alppilassa. AutoJerry-luotettu kumppani." },
