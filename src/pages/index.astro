@@ -149,76 +149,44 @@ const sahkopostiHref = "mailto:" + data.sahkoposti;
       </div>
     </section>
 
-    <section id="arvostelut" class="px-6 py-24 bg-gray-50">
+   <section id="arvostelut" class="px-6 py-24 bg-gray-50">
       <div class="max-w-4xl mx-auto">
         <p class="reveal text-orange-600 font-semibold text-sm uppercase tracking-widest text-center mb-3">Mitä asiakkaat sanovat</p>
         <h2 class="reveal text-4xl font-black text-center mb-16">Asiakasarvostelut</h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="reveal reveal-delay-1 bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div class="flex gap-1 mb-4">
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-            </div>
-            <p class="text-gray-600 leading-relaxed mb-6 italic">"Erinomainen työn jälki ja aikataulu piti täydellisesti. Suosittelen lämpimästi!"</p>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">M</div>
-              <div>
-                <div class="font-bold text-sm">Matti K.</div>
-                <div class="text-gray-400 text-xs">{data.paikkakunta}</div>
+          {data.arvostelut.map((a, i) => (
+            <div class={"reveal reveal-delay-" + (i + 1) + " bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow"}>
+              <div class="flex gap-1 mb-4">
+                <span class="text-orange-400 text-xl">★</span>
+                <span class="text-orange-400 text-xl">★</span>
+                <span class="text-orange-400 text-xl">★</span>
+                <span class="text-orange-400 text-xl">★</span>
+                <span class="text-orange-400 text-xl">★</span>
+              </div>
+              <p class="text-gray-600 leading-relaxed mb-6 italic">"{a.teksti}"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">{a.kirjain}</div>
+                <div>
+                  <div class="font-bold text-sm">{a.nimi}</div>
+                  <div class="text-gray-400 text-xs">{data.paikkakunta}</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="reveal reveal-delay-2 bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div class="flex gap-1 mb-4">
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-            </div>
-            <p class="text-gray-600 leading-relaxed mb-6 italic">"Kylpyhuoneremontti sujui ongelmitta. Hinta oli juuri se mitä sovittiin - ei yllätyksiä."</p>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">S</div>
-              <div>
-                <div class="font-bold text-sm">Sari L.</div>
-                <div class="text-gray-400 text-xs">{data.paikkakunta}</div>
-              </div>
-            </div>
-          </div>
-          <div class="reveal reveal-delay-3 bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div class="flex gap-1 mb-4">
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-              <span class="text-orange-400 text-xl">★</span>
-            </div>
-            <p class="text-gray-600 leading-relaxed mb-6 italic">"Ammattitaitoista porukkaa. Siivosivat jälkensä ja olivat ystävällisiä koko projektin ajan."</p>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">J</div>
-              <div>
-                <div class="font-bold text-sm">Jukka P.</div>
-                <div class="text-gray-400 text-xs">{data.paikkakunta}</div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
 
     <section id="yhteystiedot" class="px-6 py-24 text-center max-w-2xl mx-auto">
       <p class="reveal text-orange-600 font-semibold text-sm uppercase tracking-widest mb-3">Ota yhteyttä</p>
-      <h2 class="reveal text-4xl font-black mb-4">Pyydä maksuton tarjous</h2>
-      <p class="reveal text-gray-500 mb-12 text-lg">Vastaamme saman päivän aikana. Ei sitoumuksia.</p>
+      <h2 class="reveal text-4xl font-black mb-4">Varaa aika tai kysy tarjous</h2>
+      <p class="reveal text-gray-500 mb-12 text-lg">Palvelemme osoitteessa {data.osoite}. Vastaamme saman päivän aikana.</p>
       <div class="reveal flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={puhelinHref} class="flex items-center justify-center gap-2 bg-orange-600 text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-orange-700 transition">
+        <a href={puhelinHref} class="whitespace-nowrap flex items-center justify-center gap-2 bg-orange-600 text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-orange-700 transition">
           <span class="material-symbols-outlined">call</span> {data.puhelin}
         </a>
-        <a href={sahkopostiHref} class="flex items-center justify-center gap-2 border-2 border-orange-600 text-orange-600 font-bold text-lg px-10 py-4 rounded-full hover:bg-orange-50 transition">
-          <span class="material-symbols-outlined">mail</span> {data.sahkoposti}
+        <a href={sahkopostiHref} class="whitespace-nowrap flex items-center justify-center gap-2 border-2 border-orange-600 text-orange-600 font-bold text-lg px-10 py-4 rounded-full hover:bg-orange-50 transition">
+          <span class="material-symbols-outlined">mail</span> Sähköposti
         </a>
       </div>
     </section>
